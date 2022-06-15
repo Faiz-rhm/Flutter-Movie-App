@@ -19,7 +19,7 @@ class Movie with _$Movie {
     DateTime? releaseDate,
     required String title,
     required bool video,
-    double? voteAverage,
+    double? vote_average,
     int? voteCount,
   }) = _Movie;
 
