@@ -8,6 +8,10 @@ class TitleWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final movieType = ref.watch(movieTypeProvider);
-    return Text(movieType.name);
+    final theme = Theme.of(context);
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: Text(movieType.name, style: theme.textTheme.headline5,)
+    );
   }
 }

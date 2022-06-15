@@ -23,7 +23,7 @@ class MovieTags extends ConsumerWidget {
                 label: Text(
                   type.name,
                 ),
-                backgroundColor: type == movieType ? Colors.blue : null,
+                backgroundColor: type == movieType ? Colors.red.shade900 : Colors.black.withOpacity(0.6),
               ),
             ),
           ))
