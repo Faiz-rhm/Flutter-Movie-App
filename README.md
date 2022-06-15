@@ -1,4 +1,4 @@
-# Flutter-Crypto-Wallet-App
+# Flutter-Movie-App
 
 A simple yet sufficient flutter application to fetch:
 
