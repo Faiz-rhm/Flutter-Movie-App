@@ -32,7 +32,7 @@ mixin _$Movie {
   DateTime? get releaseDate => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   bool get video => throw _privateConstructorUsedError;
-  double? get voteAverage => throw _privateConstructorUsedError;
+  double? get vote_average => throw _privateConstructorUsedError;
   int? get voteCount => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -57,7 +57,7 @@ abstract class $MovieCopyWith<$Res> {
       DateTime? releaseDate,
       String title,
       bool video,
-      double? voteAverage,
+      double? vote_average,
       int? voteCount});
 }
 
@@ -83,7 +83,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
     Object? releaseDate = freezed,
     Object? title = freezed,
     Object? video = freezed,
-    Object? voteAverage = freezed,
+    Object? vote_average = freezed,
     Object? voteCount = freezed,
   }) {
     return _then(_value.copyWith(
@@ -135,9 +135,9 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
               as bool,
-      voteAverage: voteAverage == freezed
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
+      vote_average: vote_average == freezed
+          ? _value.vote_average
+          : vote_average // ignore: cast_nullable_to_non_nullable
               as double?,
       voteCount: voteCount == freezed
           ? _value.voteCount
@@ -165,7 +165,7 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       DateTime? releaseDate,
       String title,
       bool video,
-      double? voteAverage,
+      double? vote_average,
       int? voteCount});
 }
 
@@ -192,7 +192,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
     Object? releaseDate = freezed,
     Object? title = freezed,
     Object? video = freezed,
-    Object? voteAverage = freezed,
+    Object? vote_average = freezed,
     Object? voteCount = freezed,
   }) {
     return _then(_Movie(
@@ -244,9 +244,9 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
           ? _value.video
           : video // ignore: cast_nullable_to_non_nullable
               as bool,
-      voteAverage: voteAverage == freezed
-          ? _value.voteAverage
-          : voteAverage // ignore: cast_nullable_to_non_nullable
+      vote_average: vote_average == freezed
+          ? _value.vote_average
+          : vote_average // ignore: cast_nullable_to_non_nullable
               as double?,
       voteCount: voteCount == freezed
           ? _value.voteCount
@@ -272,7 +272,7 @@ class _$_Movie implements _Movie {
       this.releaseDate,
       required this.title,
       required this.video,
-      this.voteAverage,
+      this.vote_average,
       this.voteCount});
 
   factory _$_Movie.fromJson(Map<String, dynamic> json) =>
@@ -303,13 +303,13 @@ class _$_Movie implements _Movie {
   @override
   final bool video;
   @override
-  final double? voteAverage;
+  final double? vote_average;
   @override
   final int? voteCount;
 
   @override
   String toString() {
-    return 'Movie(adult: $adult, backdrop_path: $backdrop_path, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, poster_path: $poster_path, releaseDate: $releaseDate, title: $title, video: $video, voteAverage: $voteAverage, voteCount: $voteCount)';
+    return 'Movie(adult: $adult, backdrop_path: $backdrop_path, genreIds: $genreIds, id: $id, originalLanguage: $originalLanguage, originalTitle: $originalTitle, overview: $overview, popularity: $popularity, poster_path: $poster_path, releaseDate: $releaseDate, title: $title, video: $video, vote_average: $vote_average, voteCount: $voteCount)';
   }
 
   @override
@@ -336,7 +336,7 @@ class _$_Movie implements _Movie {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.video, video) &&
             const DeepCollectionEquality()
-                .equals(other.voteAverage, voteAverage) &&
+                .equals(other.vote_average, vote_average) &&
             const DeepCollectionEquality().equals(other.voteCount, voteCount));
   }
 
@@ -356,7 +356,7 @@ class _$_Movie implements _Movie {
       const DeepCollectionEquality().hash(releaseDate),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(video),
-      const DeepCollectionEquality().hash(voteAverage),
+      const DeepCollectionEquality().hash(vote_average),
       const DeepCollectionEquality().hash(voteCount));
 
   @JsonKey(ignore: true)
@@ -384,7 +384,7 @@ abstract class _Movie implements Movie {
       final DateTime? releaseDate,
       required final String title,
       required final bool video,
-      final double? voteAverage,
+      final double? vote_average,
       final int? voteCount}) = _$_Movie;
 
   factory _Movie.fromJson(Map<String, dynamic> json) = _$_Movie.fromJson;
@@ -414,7 +414,7 @@ abstract class _Movie implements Movie {
   @override
   bool get video => throw _privateConstructorUsedError;
   @override
-  double? get voteAverage => throw _privateConstructorUsedError;
+  double? get vote_average => throw _privateConstructorUsedError;
   @override
   int? get voteCount => throw _privateConstructorUsedError;
   @override

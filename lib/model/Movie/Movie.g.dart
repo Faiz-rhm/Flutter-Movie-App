@@ -21,7 +21,7 @@ _$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
           : DateTime.parse(json['releaseDate'] as String),
       title: json['title'] as String,
       video: json['video'] as bool,
-      voteAverage: (json['voteAverage'] as num?)?.toDouble(),
+      vote_average: (json['vote_average'] as num?)?.toDouble(),
       voteCount: json['voteCount'] as int?,
     );
 
@@ -38,6 +38,6 @@ Map<String, dynamic> _$$_MovieToJson(_$_Movie instance) => <String, dynamic>{
       'releaseDate': instance.releaseDate?.toIso8601String(),
       'title': instance.title,
       'video': instance.video,
-      'voteAverage': instance.voteAverage,
+      'vote_average': instance.vote_average,
       'voteCount': instance.voteCount,
     };
