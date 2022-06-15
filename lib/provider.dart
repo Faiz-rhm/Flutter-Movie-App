@@ -24,7 +24,26 @@ final moviesProvider = FutureProvider < List < Movie >> ((ref) async {
     }
   );
   return MovieResponse.fromJson(response.data).results!;
-
 });
+
+final upcomingProvider = FutureProvider < List < Movie >> ((ref) async {
+  final dio = ref.watch(dioProvider);
+  final response = await dio.get('movie/top_rated',
+    queryParameters: {
+      'api_key': EnvironmentConfig.API_KEY
+    }
+  );
+  return MovieResponse.fromJson(response.data).results!;
+});
+
+// final movieDetailsProvider = FutureProvider < List < Movie >> ((ref) async {
+//   final dio = ref.watch(dioProvider);
+//   final response = await dio.get('movie/'+movieID,
+//     queryParameters: {
+//       'api_key': EnvironmentConfig.API_KEY
+//     }
+//   );
+//   return MovieResponse.fromJson(response.data).results!;
+// });
 
 final movieProvider = Provider((ref) => throw UnimplementedError());
