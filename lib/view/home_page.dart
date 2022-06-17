@@ -152,20 +152,18 @@ class MovieList extends ConsumerWidget {
                     ref.read(movieIDProvider.notifier).state = movie.id;
                     Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
                   },
-                  child: Expanded(
-                    child: Hero(
-                      tag: movie,
-                      child: Container(
-                        height: 250,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(
-                              EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
-                            )
+                  child: Hero(
+                    tag: movie.id,
+                    child: Container(
+                      height: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.all(Radius.circular(10)),
+                        image: DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                            EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
                           )
-                        ),
+                        )
                       ),
                     ),
                   ),
