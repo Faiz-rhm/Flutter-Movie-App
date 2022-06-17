@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/extension.dart';
+import 'package:movie_app/model/Cast/Cast.dart';
 import 'package:movie_app/model/MovieDetails/MovieDetails.dart';
 import 'package:movie_app/model/MovieResponse/MovieResponse.dart';
 
@@ -51,6 +52,18 @@ final movieDetailsProvider = FutureProvider <MovieDetails>((ref) async {
   );
   print('response ${response.data}');
   return MovieDetails.fromJson(response.data);
+});
+
+final castProvider = FutureProvider <Cast> ((ref) async {
+  final movieID = ref.watch(movieIDProvider);
+  final dio = ref.watch(dioProvider);
+  final response = await dio.get('movie/'+movieID.toString()+'/credits',
+    queryParameters: {
+      'api_key': EnvironmentConfig.API_KEY
+    }
+  );
+  print('response: ${response.data}');
+  return Cast.fromJson(response.data);
 });
 
 final movieProvider = Provider((ref) => throw UnimplementedError());
