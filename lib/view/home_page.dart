@@ -145,18 +145,18 @@ class MovieList extends ConsumerWidget {
           scale: 0.5,
           itemBuilder: (BuildContext context, int index) {
             final movie = movies[index];
-            return Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(10)),
-              ),
-              child: Column(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      ref.read(movieIDProvider.notifier).state = movie.id;
-                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
-                    },
-                    child: Hero(
+            return InkWell(
+              onTap: () {
+                ref.read(movieIDProvider.notifier).state = movie.id;
+                Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
+              },
+              child: Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                ),
+                child: Column(
+                  children: [
+                    Hero(
                       tag: movie.id,
                       child: Container(
                         height: 260,
@@ -171,52 +171,52 @@ class MovieList extends ConsumerWidget {
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: 5,),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      // crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            color: Colors.grey.withOpacity(0.1),
+                    const SizedBox(height: 5,),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        // crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              color: Colors.grey.withOpacity(0.1),
+                            ),
+                            child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
                           ),
-                          child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
-                        ),
-                        // const SizedBox(width: 5,),
-                        Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            color:Colors.grey.withOpacity(0.1),
+                          // const SizedBox(width: 5,),
+                          Container(
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              color:Colors.grey.withOpacity(0.1),
+                            ),
+                            child: Text('Action', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
                           ),
-                          child: Text('Action', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
-                        ),
-                        // const SizedBox(width: 5,),
-                        Container(
-                          padding: const EdgeInsets.all(7),
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            color: Colors.grey.withOpacity(0.1),
-                          ),
-                          child: Row(
-                            children: [
-                              const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                              const SizedBox(width: 5,),
-                              Text(movie.vote_average.toString(), style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),),
-                            ],
+                          // const SizedBox(width: 5,),
+                          Container(
+                            padding: const EdgeInsets.all(7),
+                            decoration: BoxDecoration(
+                              borderRadius: const BorderRadius.all(Radius.circular(10)),
+                              color: Colors.grey.withOpacity(0.1),
+                            ),
+                            child: Row(
+                              children: [
+                                const Icon(Icons.star, size: 18, color: Colors.yellow,),
+                                const SizedBox(width: 5,),
+                                Text(movie.vote_average.toString(), style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),),
+                              ],
+                            )
                           )
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 12,),
-                  Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
-                ],
+                    const SizedBox(height: 12,),
+                    Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
+                  ],
+                ),
               ),
             );
           },
