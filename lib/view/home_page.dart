@@ -138,80 +138,86 @@ class MovieList extends ConsumerWidget {
       orElse: () => const Center(child: CircularProgressIndicator()),
       data: (movies) =>
       SizedBox(
-        height: 400,
+        height: 350,
         child: Swiper(
           itemCount: movies.length,
-          viewportFraction: 0.5,
-          scale: 0.7,
+          viewportFraction: 0.42,
+          scale: 0.5,
           itemBuilder: (BuildContext context, int index) {
             final movie = movies[index];
-            return Column(
-              children: [
-                InkWell(
-                  onTap: () {
-                    ref.read(movieIDProvider.notifier).state = movie.id;
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
-                  },
-                  child: Hero(
-                    tag: movie.id,
-                    child: Container(
-                      height: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.all(Radius.circular(10)),
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(
-                            EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
+            return Container(
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Column(
+                children: [
+                  InkWell(
+                    onTap: () {
+                      ref.read(movieIDProvider.notifier).state = movie.id;
+                      Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
+                    },
+                    child: Hero(
+                      tag: movie.id,
+                      child: Container(
+                        height: 260,
+                        decoration: BoxDecoration(
+                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                          image: DecorationImage(
+                            // fit: BoxFit.fill,s
+                            image: NetworkImage(
+                              EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
+                            )
                           )
-                        )
+                        ),
                       ),
                     ),
                   ),
-                ),
-                const SizedBox(height: 16,),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          color: Colors.grey.withOpacity(0.1),
+                  const SizedBox(height: 5,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color: Colors.grey.withOpacity(0.1),
+                          ),
+                          child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
                         ),
-                        child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),)
-                      ),
-                      const SizedBox(width: 10,),
-                      Container(
-                        padding: const EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          color:Colors.grey.withOpacity(0.1),
+                        // const SizedBox(width: 5,),
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color:Colors.grey.withOpacity(0.1),
+                          ),
+                          child: Text('Action', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
                         ),
-                        child: Text('Action', style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),)
-                      ),
-                      const SizedBox(width: 10,),
-                      Container(
-                        padding: const EdgeInsets.all(7),
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.all(Radius.circular(10)),
-                          color: Colors.grey.withOpacity(0.1),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                            const SizedBox(width: 5,),
-                            Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
-                          ],
+                        // const SizedBox(width: 5,),
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color: Colors.grey.withOpacity(0.1),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.star, size: 18, color: Colors.yellow,),
+                              const SizedBox(width: 5,),
+                              Text(movie.vote_average.toString(), style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),),
+                            ],
+                          )
                         )
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12,),
-                Text(movie.title, style : theme.textTheme.headline5!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
-              ],
+                  const SizedBox(height: 12,),
+                  Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
+                ],
+              ),
             );
           },
         ),
