@@ -149,7 +149,8 @@ class MovieList extends ConsumerWidget {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.push(context,MaterialPageRoute(builder: (context) => MovieDetailsPage(movie: movie,)));
+                    ref.read(movieIDProvider.notifier).state = movie.id;
+                    Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
                   },
                   child: Expanded(
                     child: Hero(
@@ -202,12 +203,11 @@ class MovieList extends ConsumerWidget {
                         child: Row(
                           children: [
                             const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                            const SizedBox(width: 2,),
+                            const SizedBox(width: 5,),
                             Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
                           ],
                         )
-                      ),
-
+                      )
                     ],
                   ),
                 ),
