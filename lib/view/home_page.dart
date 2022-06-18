@@ -2,6 +2,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconly/iconly.dart';
 import 'package:movie_app/env_config.dart';
 import 'package:movie_app/provider.dart';
 import 'package:movie_app/view/movie_details_page.dart';
@@ -15,44 +16,71 @@ class HomePage extends StatelessWidget {
     final theme =  Theme.of(context);
     return Scaffold(
       backgroundColor: Colors.black,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.black,
+        leading: IconButton(
+          icon: const Icon(IconlyLight.category),
+          onPressed: () {},
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(IconlyLight.notification),
+            onPressed: () {},
+          ),
+          IconButton(
+            icon: const Icon(IconlyLight.search),
+            onPressed: () {},
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 0,  vertical:30),
+          padding: const EdgeInsets.symmetric(horizontal: 0,  vertical:20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              ListTile(
-                leading: Container(
-                  height: 50,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: const BoxDecoration(
-                    color: Colors.black26,
-                    shape: BoxShape.circle,
-                  ),
-                  child: Image.asset(
-                    'assets/profile.jpg',
-                  ),
-                ),
-                title: Text('Hello', style: theme.textTheme.titleMedium!.copyWith(color: Colors.grey.shade400),),
-                subtitle: Text('Timur K', style: theme.textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w600 ) ),
-                trailing: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.withOpacity(0.1),
-                    borderRadius: const BorderRadius.all(Radius.circular(10))
-                  ),
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    size: 20,
-                  ),
+              // add search textfield and filter button
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        // height: 45,
+                        child: TextField(
+                          decoration:  InputDecoration(
+                            hintText: 'Search movies, series...',
+                            filled: true,
+                            border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: const BorderSide(
+                              width: 0,
+                              style: BorderStyle.none,
+                            ),
+                          ),
+                          isDense: true,
+                          prefixIcon: const Icon(IconlyLight.search),
+                        ),
+                        style: theme.textTheme.bodyMedium!.copyWith(fontWeight: FontWeight.w400, color: Colors.grey.shade400),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.red.shade900,
+                      ),
+                      child: IconButton(
+                        icon: const Icon(IconlyLight.filter),
+                        onPressed: () {},
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              const SizedBox(height: 10,),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Text('Upcoming Movies', style: theme.textTheme.headline5)
-              ),
-              const SizedBox(height: 10,),
               Consumer(
                 builder: ((context, ref, child) {
                   final moviesAsyncValue = ref.watch(upcomingProvider);
@@ -73,31 +101,42 @@ class HomePage extends StatelessWidget {
                           clipBehavior: Clip.antiAlias,
                           decoration: BoxDecoration(
                             color: Colors.white,
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            borderRadius: const BorderRadius.all(Radius.circular(30)),
                             image: DecorationImage(
                               image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path),
                               fit: BoxFit.fill
                             )
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.all(16),
+                          child: Container(
+                            // padding: const EdgeInsets.all(5),
+                            decoration: const BoxDecoration(
+                              // color: Colors.black.withOpacity(0.5),
+                              borderRadius: BorderRadius.all(Radius.circular(5))
+                            ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.5),
-                                    borderRadius: const BorderRadius.all(Radius.circular(5))
-                                  ),
-                                  child: Text(movie.title, style: theme.textTheme.titleMedium)
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(movie.title, style: theme.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w700)),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
+                                        const SizedBox(width: 2,),
+                                        Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(5),
-                                  decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.5),
-                                    borderRadius: const BorderRadius.all(Radius.circular(5))
+                                  decoration: const BoxDecoration(
+                                    // color: Colors.black.withOpacity(0.5),
+                                    borderRadius: BorderRadius.all(Radius.circular(5))
                                   ),
                                   child: Row(
                                     children: [
