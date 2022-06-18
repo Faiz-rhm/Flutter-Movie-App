@@ -39,6 +39,8 @@ dependencies:
   freezed_annotation: ^2.0.1
   card_swiper: ^2.0.4
   rich_text_view: ^1.0.0
+  skeletons: ^0.0.3
+  iconly: ^1.0.1
 
 dev_dependencies:
   flutter_test:
