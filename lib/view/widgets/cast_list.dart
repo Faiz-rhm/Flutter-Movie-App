@@ -16,38 +16,12 @@ class CastList extends ConsumerWidget {
       loading: () => const Center(child: CircularProgressIndicator()),
       data: (data) => _buildCastList(context, data),
     );
-
-    // return SingleChildScrollView(
-    //   scrollDirection: Axis.horizontal,
-    //   child: Row(
-    //     children: [
-    //       SizedBox(
-    //         width: 100,
-    //         child: Card(
-    //           child: Column(
-    //             children: [
-    //               Image.network(
-    //                 '${EnvironmentConfig.IMAGE_BASE_URL}${movie.poster_path}',
-    //                 fit: BoxFit.cover,
-    //               ),
-    //               const Padding(
-    //                 padding: EdgeInsets.all(5),
-    //                 child: Text('Tom')
-    //               ),
-    //             ],
-    //           ),
-    //         ),
-    //       ),
-    //     ],
-    //   ),
-    // );
   }
 
   _buildCastList(BuildContext context, Cast data) {
-    print('cast list');
-    print(data);
+    final theme = Theme.of(context);
     return SizedBox(
-      height: 180,
+      height: 80,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const BouncingScrollPhysics(),
@@ -55,29 +29,18 @@ class CastList extends ConsumerWidget {
         itemCount: data.cast.length,
         itemBuilder: (context, index) {
           final cast = data.cast[index];
-          return Container(
-            height: 120,
-            width: 100,
-            margin: const EdgeInsets.symmetric(horizontal: 5),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
-                image: NetworkImage('${EnvironmentConfig.IMAGE_BASE_URL}${cast.profile_path}'),
-                fit: BoxFit.cover,
+          return SizedBox(
+            width: MediaQuery.of(context).size.width * 0.43,
+            // height: 70,
+            child: ListTile(
+              leading: CircleAvatar(
+                radius: 30,
+                backgroundImage: NetworkImage('${EnvironmentConfig.IMAGE_BASE_URL}${cast.profile_path}'),
               ),
-            ),
-            child:
-            // add text at the bottom of image
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text(
-                  cast.name,
-                  style: Theme.of(context).textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 5,)
-              ],
+              title: Text(cast.known_for_department, style: theme.textTheme.overline),
+              subtitle: Text(cast.character, style: theme.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w700),overflow: TextOverflow.ellipsis,),
+              contentPadding: const EdgeInsets.all(0),
+              horizontalTitleGap: 5,
             ),
           );
         },
