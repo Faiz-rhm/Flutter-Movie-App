@@ -31,7 +31,7 @@ final moviesProvider = FutureProvider < List < Movie >> ((ref) async {
 
 final upcomingProvider = FutureProvider < List < Movie >> ((ref) async {
   final dio = ref.watch(dioProvider);
-  final response = await dio.get('movie/top_rated',
+  final response = await dio.get('movie/upcoming',
     queryParameters: {
       'api_key': EnvironmentConfig.API_KEY
     }
