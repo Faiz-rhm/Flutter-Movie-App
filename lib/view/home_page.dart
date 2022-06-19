@@ -15,10 +15,10 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme =  Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.grey.withOpacity(0.2),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.grey.withOpacity(0),
         leading: IconButton(
           icon: const Icon(IconlyLight.category),
           onPressed: () {},
@@ -105,10 +105,17 @@ class HomePage extends StatelessWidget {
                             image: DecorationImage(
                               image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path),
                               fit: BoxFit.fill
-                            )
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.5),
+                                blurRadius: 5,
+                                offset: const Offset(0,3),
+                              ),
+                            ],
                           ),
                           child: Container(
-                            // padding: const EdgeInsets.all(5),
+                            padding: const EdgeInsets.all(15),
                             decoration: const BoxDecoration(
                               // color: Colors.black.withOpacity(0.5),
                               borderRadius: BorderRadius.all(Radius.circular(5))
@@ -117,34 +124,33 @@ class HomePage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(movie.title, style: theme.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w700)),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.start,
-                                      children: [
-                                        const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
-                                        const SizedBox(width: 2,),
-                                        Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  padding: const EdgeInsets.all(5),
-                                  decoration: const BoxDecoration(
-                                    // color: Colors.black.withOpacity(0.5),
-                                    borderRadius: BorderRadius.all(Radius.circular(5))
-                                  ),
-                                  child: Row(
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                                      const SizedBox(width: 2,),
-                                      Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+                                      Flexible(
+                                        flex: 3,
+                                        child: Text(movie.title, style: theme.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis,)
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
+                                          const SizedBox(width: 2,),
+                                          Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+                                        ],
+                                      ),
                                     ],
                                   ),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.red.shade900,
+                                    shape: BoxShape.circle
+                                  ),
+                                  child: const Icon(IconlyLight.play, size: 40,)
                                 )
                               ],
                             ),
@@ -156,7 +162,7 @@ class HomePage extends StatelessWidget {
                 })
               ),
               const MovieTags(),
-              const SizedBox(height: 16,),
+              const SizedBox(height: 0,),
               const MovieList()
             ],
           ),
@@ -185,6 +191,7 @@ class MovieList extends ConsumerWidget {
           itemBuilder: (BuildContext context, int index) {
             final movie = movies[index];
             return InkWell(
+              borderRadius: const BorderRadius.all(Radius.circular(20)),
               onTap: () {
                 ref.read(movieIDProvider.notifier).state = movie.id;
                 Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
@@ -200,7 +207,7 @@ class MovieList extends ConsumerWidget {
                       child: Container(
                         height: 260,
                         decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+                          borderRadius: const BorderRadius.all(Radius.circular(15)),
                           image: DecorationImage(
                             // fit: BoxFit.fill,s
                             image: NetworkImage(
@@ -211,48 +218,46 @@ class MovieList extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 5,),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        // crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              color: Colors.grey.withOpacity(0.1),
-                            ),
-                            child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color: Colors.grey.withOpacity(0.1),
                           ),
-                          // const SizedBox(width: 5,),
-                          Container(
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              color:Colors.grey.withOpacity(0.1),
-                            ),
-                            child: Text('Action', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
+                          child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
+                        ),
+                        // const SizedBox(width: 5,),
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color:Colors.grey.withOpacity(0.1),
                           ),
-                          // const SizedBox(width: 5,),
-                          Container(
-                            padding: const EdgeInsets.all(7),
-                            decoration: BoxDecoration(
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              color: Colors.grey.withOpacity(0.1),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                                const SizedBox(width: 5,),
-                                Text(movie.vote_average.toString(), style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),),
-                              ],
-                            )
+                          child: Text('Action', style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),)
+                        ),
+                        // const SizedBox(width: 5,),
+                        Container(
+                          padding: const EdgeInsets.all(7),
+                          decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            color: Colors.grey.withOpacity(0.1),
+                          ),
+                          child: Row(
+                            children: [
+                              const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
+                              const SizedBox(width: 5,),
+                              Text(movie.vote_average.toString(), style: theme.textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold),),
+                            ],
                           )
-                        ],
-                      ),
+                        )
+                      ],
                     ),
-                    const SizedBox(height: 12,),
+
+                    const SizedBox(height: 5,),
                     Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
                   ],
                 ),
