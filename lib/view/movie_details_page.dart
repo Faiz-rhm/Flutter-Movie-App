@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:iconly/iconly.dart';
 import 'package:movie_app/model/MovieDetails/MovieDetails.dart';
 import 'package:movie_app/provider.dart';
 import 'package:movie_app/view/widgets/cast_list.dart';
+import 'package:movie_app/view/widgets/recommended.dart';
 import 'package:movie_app/view/widgets/sliver_app_bar.dart';
 import 'package:rich_text_view/rich_text_view.dart';
 
@@ -27,7 +29,7 @@ class MovieDetailsPage extends StatelessWidget {
   _buildMovieDetails(BuildContext context, MovieDetails movie) {
     return SafeArea(
       child: Material(
-        color: Colors.black,
+        color: Colors.grey.withOpacity(0.2),
         child: CustomScrollView(
           slivers: [
             SliverPersistentHeader(
@@ -53,7 +55,7 @@ class MovieDetailsPage extends StatelessWidget {
   _buildMovieDetailsContent(BuildContext context, MovieDetails movie) {
     final theme = Theme.of(context);
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -62,41 +64,25 @@ class MovieDetailsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  color: Colors.grey.withOpacity(0.1),
-                ),
-                child: Text(movie.adult ? "-18" : "18+", style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),)
+              Text(movie.adult ? "-18" : "18+", style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+              Row(
+                children: [
+                  const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
+                  const SizedBox(width: 5,),
+                  Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+                ],
               ),
-              // const SizedBox(width: 10,),
-              Container(
-                padding: const EdgeInsets.all(7),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  color:Colors.grey.withOpacity(0.1),
-                ),
-                child: Text('Action', style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),)
+              const SizedBox(width: 160,),
+              InkWell(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                onTap: (){},
+                child: const Icon(Icons.share)
               ),
-              // const SizedBox(width: 10,),
-              Container(
-                padding: const EdgeInsets.all(7),
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.all(Radius.circular(10)),
-                  color: Colors.grey.withOpacity(0.1),
-                ),
-                child: Row(
-                  children: [
-                    const Icon(Icons.star, size: 18, color: Colors.yellow,),
-                    const SizedBox(width: 5,),
-                    Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
-                  ],
-                )
+              InkWell(
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+                onTap: (){},
+                child: const Icon(Icons.bookmark_outline)
               ),
-              // const SizedBox(width: 50,),
-              // Icon(Icons.add_circle_outline, size: 25, color: Colors.grey.shade400,),
-              // Icon(Icons.send_outlined, size: 18, color: Colors.grey.shade400,),
             ],
           ),
           const SizedBox(height: 16,),
@@ -121,9 +107,11 @@ class MovieDetailsPage extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text('Top Bill Cost', style: Theme.of(context).textTheme.titleLarge),
-          const SizedBox(height: 16,),
+          const SizedBox(height: 10,),
           const CastList(),
-          const SizedBox(height: 100,)
+          Text('Recommended', style: Theme.of(context).textTheme.titleLarge),
+          const SizedBox(height: 16,),
+          const RecommendedWidget()
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:movie_app/env_config.dart';
 import 'package:movie_app/model/MovieDetails/MovieDetails.dart';
 
@@ -17,7 +18,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           tag: movie.id,
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: const BorderRadius.all(Radius.circular(10)),
+              color: Colors.black.withOpacity(0.2),
               image: DecorationImage(
                 fit: BoxFit.fitWidth,
                 image: NetworkImage(
@@ -43,7 +44,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                     borderRadius: const BorderRadius.all(Radius.circular(10))
                   ),
                   child: const Icon(
-                    Icons.arrow_back,
+                    IconlyLight.arrow_left,
                     size: 20,
                   ),
                 ),
@@ -55,7 +56,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                   borderRadius: const BorderRadius.all(Radius.circular(10))
                 ),
                 child: const Icon(
-                  Icons.favorite_outline,
+                  IconlyLight.heart,
                   size: 20,
                 ),
               ),
@@ -63,52 +64,53 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           )
         ),
         Positioned(
-          top: expandedHeight / 1.3 - shrinkOffset,
+          top: expandedHeight / 1.44 - shrinkOffset,
           left: 0,
           right: 0,
-          child: Column(
-            children:[
-              Opacity(
-                opacity: (1 - shrinkOffset / expandedHeight),
-                child: Container(
-                  padding: const EdgeInsets.all(5),
-                  child: Text(movie.original_title, style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
-                ),
+          child: Opacity(
+            opacity: (1 - shrinkOffset / expandedHeight),
+            child: Container(
+              padding: const EdgeInsets.all(15),
+              color: Colors.black.withOpacity(0.5),
+              child: Column(
+                children:[
+                  Container(
+                    padding: const EdgeInsets.all(5),
+                    child: Text(movie.original_title, style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children:[
+                      Text(movie.release_date.substring(0,4), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
+                      const SizedBox(width: 10,),
+                      Container(
+                        height: 5,
+                        width: 5,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey
+                        ),
+                      ),
+                      const SizedBox(width: 10,),
+                      movie.genres !=  null ? Text('${movie.genres![0].name},', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,) : Container(),
+                      const SizedBox(width: 5,),
+                      movie.genres !=  null ? Text(movie.genres![2].name, style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,) : Container(),
+                      const SizedBox(width: 10,),
+                      Container(
+                        height: 5,
+                        width: 5,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.grey
+                        ),
+                      ),
+                      const SizedBox(width: 10,),
+                      Text('${movie.runtime.toString().substring(0, 1)}h ${movie.runtime.toString().substring(1)}m', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
+                    ],
+                  ),
+                ]
               ),
-              Opacity(
-                opacity: (1 - shrinkOffset / expandedHeight),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:[
-                    Text(movie.release_date.substring(0,4), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
-                    const SizedBox(width: 10,),
-                    Container(
-                      height: 5,
-                      width: 5,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey
-                      ),
-                    ),
-                    const SizedBox(width: 10,),
-                    movie.genres !=  null ? Text('${movie.genres![0].name},', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,) : Container(),
-                    const SizedBox(width: 5,),
-                    movie.genres !=  null ? Text(movie.genres![2].name, style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,) : Container(),
-                    const SizedBox(width: 10,),
-                    Container(
-                      height: 5,
-                      width: 5,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.grey
-                      ),
-                    ),
-                    const SizedBox(width: 10,),
-                    Text('${movie.runtime.toString().substring(0, 1)}h ${movie.runtime.toString().substring(1)}m', style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
-                  ],
-                ),
-              )
-            ]
+            ),
           ),
         ),
       ],

@@ -18,7 +18,7 @@ class MovieTags extends ConsumerWidget {
           InkWell(
             onTap: () => ref.read(movieTypeProvider.notifier).state = type,
             child: Padding(
-              padding: const EdgeInsets.only(right:6, left: 6, top: 5, bottom: 5),
+              padding: const EdgeInsets.only(right:6, left: 6, top: 0, bottom:10),
               child: Chip(
                 label: Text(
                   type.name,
