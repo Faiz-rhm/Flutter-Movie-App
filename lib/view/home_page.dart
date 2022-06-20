@@ -160,8 +160,7 @@ class HomePage extends StatelessWidget {
                     }
                   ))
                 );
-              })
-              ),
+              })),
               const MovieTags(),
               const SizedBox(height: 0,),
               const MovieList()
@@ -181,7 +180,7 @@ class MovieList extends ConsumerWidget {
     final theme = Theme.of(context);
     final moviesAsyncValue = ref.watch(moviesProvider);
     return moviesAsyncValue.maybeWhen(
-      orElse: () => const Center(child: Text(' ')),
+      orElse: () => const Center(child: Text(' else')),
       loading: () => const SwiperShimmer(),
       data: (movies) =>
       SizedBox(
@@ -212,6 +211,7 @@ class MovieList extends ConsumerWidget {
                           borderRadius: const BorderRadius.all(Radius.circular(15)),
                           color: Colors.grey.withOpacity(0.1),
                           image: DecorationImage(
+                            // fit: BoxFit.fill,s
                             image: NetworkImage(
                               EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
                             )

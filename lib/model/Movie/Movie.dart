@@ -12,7 +12,7 @@ class Movie with _$Movie {
     String? genreIds,
     required int id,
     String? originalLanguage,
-    required String originalTitle,
+    String? originalTitle,
     required String overview,
     required double popularity,
     required String poster_path,

@@ -25,7 +25,7 @@ mixin _$Movie {
   String? get genreIds => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String? get originalLanguage => throw _privateConstructorUsedError;
-  String get originalTitle => throw _privateConstructorUsedError;
+  String? get originalTitle => throw _privateConstructorUsedError;
   String get overview => throw _privateConstructorUsedError;
   double get popularity => throw _privateConstructorUsedError;
   String get poster_path => throw _privateConstructorUsedError;
@@ -50,7 +50,7 @@ abstract class $MovieCopyWith<$Res> {
       String? genreIds,
       int id,
       String? originalLanguage,
-      String originalTitle,
+      String? originalTitle,
       String overview,
       double popularity,
       String poster_path,
@@ -110,7 +110,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
       originalTitle: originalTitle == freezed
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -158,7 +158,7 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
       String? genreIds,
       int id,
       String? originalLanguage,
-      String originalTitle,
+      String? originalTitle,
       String overview,
       double popularity,
       String poster_path,
@@ -219,7 +219,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
       originalTitle: originalTitle == freezed
           ? _value.originalTitle
           : originalTitle // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       overview: overview == freezed
           ? _value.overview
           : overview // ignore: cast_nullable_to_non_nullable
@@ -265,7 +265,7 @@ class _$_Movie implements _Movie {
       this.genreIds,
       required this.id,
       this.originalLanguage,
-      required this.originalTitle,
+      this.originalTitle,
       required this.overview,
       required this.popularity,
       required this.poster_path,
@@ -289,7 +289,7 @@ class _$_Movie implements _Movie {
   @override
   final String? originalLanguage;
   @override
-  final String originalTitle;
+  final String? originalTitle;
   @override
   final String overview;
   @override
@@ -377,7 +377,7 @@ abstract class _Movie implements Movie {
       final String? genreIds,
       required final int id,
       final String? originalLanguage,
-      required final String originalTitle,
+      final String? originalTitle,
       required final String overview,
       required final double popularity,
       required final String poster_path,
@@ -400,7 +400,7 @@ abstract class _Movie implements Movie {
   @override
   String? get originalLanguage => throw _privateConstructorUsedError;
   @override
-  String get originalTitle => throw _privateConstructorUsedError;
+  String? get originalTitle => throw _privateConstructorUsedError;
   @override
   String get overview => throw _privateConstructorUsedError;
   @override
