@@ -7,6 +7,8 @@ import 'package:movie_app/env_config.dart';
 import 'package:movie_app/provider.dart';
 import 'package:movie_app/view/movie_details_page.dart';
 import 'package:movie_app/view/widgets/movie_tag_widget.dart';
+import 'package:movie_app/view/widgets/swiper_shimmer.dart';
+import 'package:movie_app/view/widgets/upcomming_shimmere.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -41,7 +43,6 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // add search textfield and filter button
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
@@ -81,85 +82,85 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Consumer(
-                builder: ((context, ref, child) {
-                  final moviesAsyncValue = ref.watch(upcomingProvider);
-                  return moviesAsyncValue.maybeWhen(
-                    orElse: () => const Center(child: CircularProgressIndicator()),
-                    data: (movies) => SizedBox(
-                    height: 250,
-                    width: double.infinity,
-                    child: ListView.builder(
-                      padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
-                      scrollDirection: Axis.horizontal,
-                      itemCount: movies.length,
-                      itemBuilder: (context, index) {
-                        final movie = movies[index];
-                        return Container(
-                          width: MediaQuery.of(context).size.height * 0.47,
-                          margin: const EdgeInsets.only(right: 25),
-                          clipBehavior: Clip.antiAlias,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: const BorderRadius.all(Radius.circular(30)),
-                            image: DecorationImage(
-                              image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path),
-                              fit: BoxFit.fill
+              Consumer(builder: ((context, ref, child) {
+                final moviesAsyncValue = ref.watch(upcomingProvider);
+                return moviesAsyncValue.maybeWhen(
+                  orElse: () => const Center(child: Text('else'),),
+                  loading: () => const UpcomingShimmer(),
+                  data: (movies) => SizedBox(
+                  height: 250,
+                  width: double.infinity,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: movies.length,
+                    itemBuilder: (context, index) {
+                      final movie = movies[index];
+                      return Container(
+                        width: MediaQuery.of(context).size.height * 0.47,
+                        margin: const EdgeInsets.only(right: 25),
+                        clipBehavior: Clip.antiAlias,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.withOpacity(0.1),
+                          borderRadius: const BorderRadius.all(Radius.circular(30)),
+                          image: DecorationImage(
+                            image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path),
+                            fit: BoxFit.fill
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              blurRadius: 1,
+                              offset: const Offset(0,2),
                             ),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white.withOpacity(0.5),
-                                blurRadius: 5,
-                                offset: const Offset(0,3),
+                          ],
+                        ),
+                        child: Container(
+                          padding: const EdgeInsets.all(15),
+                          decoration: const BoxDecoration(
+                            // color: Colors.black.withOpacity(0.5),
+                            borderRadius: BorderRadius.all(Radius.circular(5))
+                          ),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 5,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      flex: 3,
+                                      child: Text(movie.title, style: theme.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis,)
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
+                                        const SizedBox(width: 5,),
+                                        Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.red.shade900,
+                                  shape: BoxShape.circle
+                                ),
+                                child: const Icon(IconlyLight.play, size: 40,)
+                              )
                             ],
                           ),
-                          child: Container(
-                            padding: const EdgeInsets.all(15),
-                            decoration: const BoxDecoration(
-                              // color: Colors.black.withOpacity(0.5),
-                              borderRadius: BorderRadius.all(Radius.circular(5))
-                            ),
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Expanded(
-                                  flex: 5,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        flex: 3,
-                                        child: Text(movie.title, style: theme.textTheme.titleMedium!.copyWith(fontWeight: FontWeight.w700), overflow: TextOverflow.ellipsis,)
-                                      ),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.start,
-                                        children: [
-                                          const Icon(IconlyLight.star, size: 18, color: Colors.yellow,),
-                                          const SizedBox(width: 2,),
-                                          Text(movie.vote_average.toString(), style: theme.textTheme.titleSmall!.copyWith(fontWeight: FontWeight.bold),),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.red.shade900,
-                                    shape: BoxShape.circle
-                                  ),
-                                  child: const Icon(IconlyLight.play, size: 40,)
-                                )
-                              ],
-                            ),
-                          ),
-                        );
-                      }
-                    ))
-                  );
-                })
+                        ),
+                      );
+                    }
+                  ))
+                );
+              })
               ),
               const MovieTags(),
               const SizedBox(height: 0,),
@@ -180,7 +181,8 @@ class MovieList extends ConsumerWidget {
     final theme = Theme.of(context);
     final moviesAsyncValue = ref.watch(moviesProvider);
     return moviesAsyncValue.maybeWhen(
-      orElse: () => const Center(child: CircularProgressIndicator()),
+      orElse: () => const Center(child: Text(' ')),
+      loading: () => const SwiperShimmer(),
       data: (movies) =>
       SizedBox(
         height: 350,
@@ -194,7 +196,7 @@ class MovieList extends ConsumerWidget {
               borderRadius: const BorderRadius.all(Radius.circular(20)),
               onTap: () {
                 ref.read(movieIDProvider.notifier).state = movie.id;
-                Navigator.push(context,MaterialPageRoute(builder: (context) => const MovieDetailsPage()));
+                Navigator.push(context,MaterialPageRoute(builder: (context) => MovieDetailsPage(movie: movie)));
               },
               child: Container(
                 decoration: const BoxDecoration(
@@ -208,8 +210,8 @@ class MovieList extends ConsumerWidget {
                         height: 260,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(15)),
+                          color: Colors.grey.withOpacity(0.1),
                           image: DecorationImage(
-                            // fit: BoxFit.fill,s
                             image: NetworkImage(
                               EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
                             )
