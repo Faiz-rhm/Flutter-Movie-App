@@ -12,7 +12,7 @@ _$_Movie _$$_MovieFromJson(Map<String, dynamic> json) => _$_Movie(
       genreIds: json['genreIds'] as String?,
       id: json['id'] as int,
       originalLanguage: json['originalLanguage'] as String?,
-      originalTitle: json['originalTitle'] as String?,
+      originalTitle: json['originalTitle'] as String,
       overview: json['overview'] as String,
       popularity: (json['popularity'] as num).toDouble(),
       poster_path: json['poster_path'] as String,
