@@ -9,6 +9,21 @@ import 'package:movie_app/view/movie_details_page.dart';
 import 'package:movie_app/view/widgets/movie_tag_widget.dart';
 import 'package:movie_app/view/widgets/swipe_shimmer.dart';
 import 'package:movie_app/view/widgets/upcoming_shimmer.dart';
+//
+//
+//  ContentView.flutter
+//  MovieApp
+//
+//  Created by  Faiz Rhm
+
+// Mark: Instagram
+// Faiz Rhm
+// Mark: faiz.rhm
+
+// Mark: Github
+// Faiz Rhm
+// Mark: https://github.com/Faiz-rhm/
+//
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -88,17 +103,17 @@ class HomePage extends StatelessWidget {
                   orElse: () => const Center(child: Text('else'),),
                   loading: () => const UpcomingShimmer(),
                   data: (movies) => SizedBox(
-                  height: 250,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   width: double.infinity,
                   child: ListView.builder(
-                    padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
+                    padding: const EdgeInsets.all(16),
                     scrollDirection: Axis.horizontal,
                     itemCount: movies.length,
                     itemBuilder: (context, index) {
                       final movie = movies[index];
                       return Container(
-                        width: MediaQuery.of(context).size.height * 0.47,
-                        margin: const EdgeInsets.only(right: 25),
+                        width: MediaQuery.of(context).size.height * 0.43,
+                        margin: const EdgeInsets.only(right: 15),
                         clipBehavior: Clip.antiAlias,
                         decoration: BoxDecoration(
                           color: Colors.grey.withOpacity(0.1),
@@ -162,7 +177,7 @@ class HomePage extends StatelessWidget {
                 );
               })),
               const MovieTags(),
-              const SizedBox(height: 0,),
+              const SizedBox(height: 20,),
               const MovieList()
             ],
           ),
@@ -184,7 +199,7 @@ class MovieList extends ConsumerWidget {
       loading: () => const SwipeShimmer(),
       data: (movies) =>
       SizedBox(
-        height: 350,
+        height: MediaQuery.of(context).size.height * 0.39,
         child: Swiper(
           itemCount: movies.length,
           viewportFraction: 0.42,
@@ -199,19 +214,19 @@ class MovieList extends ConsumerWidget {
               },
               child: Container(
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  borderRadius: BorderRadius.all(Radius.circular(15)),
                 ),
                 child: Column(
                   children: [
                     Hero(
                       tag: movie.id,
                       child: Container(
-                        height: 260,
+                        height: MediaQuery.of(context).size.height * 0.3,
                         decoration: BoxDecoration(
                           borderRadius: const BorderRadius.all(Radius.circular(15)),
                           color: Colors.grey.withOpacity(0.1),
                           image: DecorationImage(
-                            // fit: BoxFit.fill,s
+                            fit: BoxFit.fill,
                             image: NetworkImage(
                               EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
                             )
@@ -258,7 +273,7 @@ class MovieList extends ConsumerWidget {
                         )
                       ],
                     ),
-                    const SizedBox(height: 5,),
+                    const SizedBox(height: 10,),
                     Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
                   ],
                 ),

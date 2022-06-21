@@ -69,7 +69,8 @@ class CastList extends ConsumerWidget {
               subtitleStyle: SkeletonLineStyle(
                 borderRadius: BorderRadius.circular(16),
                 randomLength: true,
-                maxLength: 128
+                maxLength: 128,
+                height: 12
               ),
               verticalSpacing: 10,
             ),

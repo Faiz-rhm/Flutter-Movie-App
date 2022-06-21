@@ -10,7 +10,7 @@ class SwipeShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 350,
+      height: MediaQuery.of(context).size.height * 0.39,
       child: Swiper(
         itemCount: 3,
         viewportFraction: 0.42,
@@ -28,7 +28,7 @@ class SwipeShimmer extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.1),
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
                   ),
-                  height: 260,
+                  height: MediaQuery.of(context).size.height * 0.3,
                   child: SkeletonAvatar(
                     style: SkeletonAvatarStyle(
                       width: double.infinity,
@@ -38,7 +38,7 @@ class SwipeShimmer extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 5,),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   // crossAxisAlignment: CrossAxisAlignment.center,

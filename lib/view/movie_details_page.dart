@@ -24,7 +24,7 @@ class MovieDetailsPage extends StatelessWidget {
         slivers: [
           SliverPersistentHeader(
             delegate: MySliverAppBar(
-              expandedHeight: MediaQuery.of(context).size.height * 0.6,
+              expandedHeight: MediaQuery.of(context).size.height * 0.5,
               movie: movie
             ),
             pinned: true,
@@ -96,14 +96,14 @@ class MovieDetailsPage extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 16,),
-        Text(movie.tagline, style: Theme.of(context).textTheme.overline!.copyWith(color: Colors.grey.shade400, fontSize: 12),),
+        Text(movie.tagline, style: Theme.of(context).textTheme.titleSmall!.copyWith(color: Colors.grey.shade400, fontSize: 12),),
         const SizedBox(height: 16,),
         Text('Overview', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12,),
         RichTextView(
           text: movie.overview,
           maxLines: 4,
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(height: 1.5, color: Colors.grey.shade200),
+          style: Theme.of(context).textTheme.titleMedium!.copyWith(height: 1.5, color: Colors.grey.shade200),
           truncate: true,
           viewLessText: 'less',
           linkStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.red.shade900),

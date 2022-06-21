@@ -9,12 +9,12 @@ class UpcomingShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16),
-      height: 250,
+      padding: const EdgeInsets.only(top: 16, left: 16, bottom: 16, right: 0),
+      height: MediaQuery.of(context).size.height * 0.3,
       width: double.infinity,
       child: Container(
         width: MediaQuery.of(context).size.height,
-        margin: const EdgeInsets.only(right: 20),
+        margin: const EdgeInsets.only(right: 12),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           color: Colors.grey.withOpacity(0.1),

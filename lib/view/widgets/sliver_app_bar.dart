@@ -29,7 +29,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           ),
         ),
         Positioned(
-          top: 35,
+          top: 40,
           left: 16,
           right: 20,
           child: Row(
@@ -64,7 +64,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
           )
         ),
         Positioned(
-          top: expandedHeight / 1.31 - shrinkOffset,
+          top: expandedHeight / 1.30 - shrinkOffset,
           left: 0,
           right: 0,
           child: Opacity(
