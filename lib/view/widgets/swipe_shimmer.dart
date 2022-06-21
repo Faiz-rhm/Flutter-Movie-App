@@ -2,8 +2,8 @@ import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:skeletons/skeletons.dart';
 
-class SwiperShimmer extends StatelessWidget {
-  const SwiperShimmer({
+class SwipeShimmer extends StatelessWidget {
+  const SwipeShimmer({
     Key? key,
   }) : super(key: key);
 

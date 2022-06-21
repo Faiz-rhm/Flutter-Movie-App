@@ -7,8 +7,8 @@ import 'package:movie_app/env_config.dart';
 import 'package:movie_app/provider.dart';
 import 'package:movie_app/view/movie_details_page.dart';
 import 'package:movie_app/view/widgets/movie_tag_widget.dart';
-import 'package:movie_app/view/widgets/swiper_shimmer.dart';
-import 'package:movie_app/view/widgets/upcomming_shimmere.dart';
+import 'package:movie_app/view/widgets/swipe_shimmer.dart';
+import 'package:movie_app/view/widgets/upcoming_shimmer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -181,7 +181,7 @@ class MovieList extends ConsumerWidget {
     final moviesAsyncValue = ref.watch(moviesProvider);
     return moviesAsyncValue.maybeWhen(
       orElse: () => const Center(child: Text(' else')),
-      loading: () => const SwiperShimmer(),
+      loading: () => const SwipeShimmer(),
       data: (movies) =>
       SizedBox(
         height: 350,
