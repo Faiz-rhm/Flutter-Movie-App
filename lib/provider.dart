@@ -19,13 +19,11 @@ final movieTypeProvider = StateProvider((ref)=>MoviesType.popular);
 final moviesProvider = FutureProvider < List < Movie >> ((ref) async {
   final movieType = ref.watch(movieTypeProvider);
   final dio = ref.watch(dioProvider);
-  print("movieType: $movieType");
   final response = await dio.get('movie/'+movieType.value,
     queryParameters: {
       'api_key': EnvironmentConfig.API_KEY
     }
   );
-  print('response: ${response.data}');
   return MovieResponse.fromJson(response.data).results!;
 });
 
@@ -43,14 +41,12 @@ final movieIDProvider = StateProvider<int>((ref)=> 0);
 
 final movieDetailsProvider = FutureProvider <MovieDetails>((ref) async {
   final movieID = ref.watch(movieIDProvider);
-  print('movieID $movieID');
   final dio = ref.watch(dioProvider);
   final response = await dio.get('movie/'+movieID.toString(),
     queryParameters: {
       'api_key': EnvironmentConfig.API_KEY
     }
   );
-  print('response ${response.data}');
   return MovieDetails.fromJson(response.data);
 });
 
@@ -62,7 +58,6 @@ final castProvider = FutureProvider <Cast> ((ref) async {
       'api_key': EnvironmentConfig.API_KEY
     }
   );
-  print('response: ${response.data}');
   return Cast.fromJson(response.data);
 });
 
