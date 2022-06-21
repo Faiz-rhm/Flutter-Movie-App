@@ -258,7 +258,6 @@ class MovieList extends ConsumerWidget {
                         )
                       ],
                     ),
-
                     const SizedBox(height: 5,),
                     Text(movie.title, style : theme.textTheme.headline6!.copyWith(color: Colors.grey.shade500), overflow: TextOverflow.ellipsis,),
                   ],

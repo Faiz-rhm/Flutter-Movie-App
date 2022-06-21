@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/env_config.dart';
 import 'package:movie_app/model/Cast/Cast.dart';
 import 'package:movie_app/provider.dart';
+import 'package:skeletons/skeletons.dart';
 
 class CastList extends ConsumerWidget {
   const CastList({Key? key,}) : super(key: key);
@@ -10,10 +11,10 @@ class CastList extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final casts = ref.watch(castProvider);
-    print('casts: $casts');
+
     return casts.maybeWhen(
       orElse: () => const Center(child: Text('Or Lese')),
-      loading: () => const Center(child: CircularProgressIndicator()),
+      loading: () => _castListShimmer(),
       data: (data) => _buildCastList(context, data),
     );
   }
@@ -34,6 +35,7 @@ class CastList extends ConsumerWidget {
             // height: 70,
             child: ListTile(
               leading: CircleAvatar(
+                backgroundColor: Colors.grey.withOpacity(0.1),
                 radius: 30,
                 backgroundImage: NetworkImage('${EnvironmentConfig.IMAGE_BASE_URL}${cast.profile_path}'),
               ),
@@ -46,5 +48,35 @@ class CastList extends ConsumerWidget {
         },
       ),
     );
+  }
+
+  _castListShimmer(){
+    return SizedBox(
+      height: 80,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return SizedBox(
+            width: MediaQuery.of(context).size.width * 0.43,
+            child: SkeletonListTile(
+              hasSubtitle: true,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              leadingStyle: const SkeletonAvatarStyle(shape: BoxShape.circle, width: 50, height: 50),
+              titleStyle: SkeletonLineStyle(borderRadius: BorderRadius.circular(16)),
+              subtitleStyle: SkeletonLineStyle(
+                borderRadius: BorderRadius.circular(16),
+                randomLength: true,
+                maxLength: 128
+              ),
+              verticalSpacing: 10,
+            ),
+          );
+        },
+      ),
+    );
+
   }
 }
