@@ -28,7 +28,10 @@ flutter run
 
 ## Screenshots
 
-<img width="1080" alt="Screen Shot 2022-06-14 at 4 17 42 PM" src="https://user-images.githubusercontent.com/14290499/173570109-fe8ee136-ae7d-47cb-81c6-4d5d6313567e.png">
+<img width="1080" alt="Screen Shot 2022-06-21 at 11 13 06 PM" src="https://user-images.githubusercontent.com/14290499/174878661-94e70742-a72b-47ba-aded-21810da89125.png">
+
+<img width="1080" alt="Screen Shot 2022-06-21 at 11 13 49 PM" src="https://user-images.githubusercontent.com/14290499/174878906-42a5eb78-5179-4774-b51a-71dd288c8b35.png">
+
 
 
 ## Pull Requests
