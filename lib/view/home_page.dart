@@ -32,7 +32,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme =  Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey.withOpacity(0.2),
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.grey.withOpacity(0),

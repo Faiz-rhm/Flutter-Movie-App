@@ -19,7 +19,7 @@ class MovieDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.withOpacity(0.2),
+      backgroundColor: Colors.grey.shade900,
       body: CustomScrollView(
         slivers: [
           SliverPersistentHeader(
