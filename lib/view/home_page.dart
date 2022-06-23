@@ -119,7 +119,7 @@ class HomePage extends StatelessWidget {
                           color: Colors.grey.withOpacity(0.1),
                           borderRadius: const BorderRadius.all(Radius.circular(30)),
                           image: DecorationImage(
-                            image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path),
+                            image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL_COVER + movie.backdrop_path!),
                             fit: BoxFit.fill
                           ),
                           boxShadow: [

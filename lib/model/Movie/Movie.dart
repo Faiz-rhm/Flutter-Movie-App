@@ -8,7 +8,7 @@ part 'Movie.g.dart';
 class Movie with _$Movie {
   factory Movie({
     required bool adult,
-    required String backdrop_path,
+    String? backdrop_path,
     String? genreIds,
     required int id,
     String? originalLanguage,
