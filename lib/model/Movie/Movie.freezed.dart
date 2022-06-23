@@ -21,7 +21,7 @@ Movie _$MovieFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Movie {
   bool get adult => throw _privateConstructorUsedError;
-  String get backdrop_path => throw _privateConstructorUsedError;
+  String? get backdrop_path => throw _privateConstructorUsedError;
   String? get genreIds => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String? get originalLanguage => throw _privateConstructorUsedError;
@@ -46,7 +46,7 @@ abstract class $MovieCopyWith<$Res> {
       _$MovieCopyWithImpl<$Res>;
   $Res call(
       {bool adult,
-      String backdrop_path,
+      String? backdrop_path,
       String? genreIds,
       int id,
       String? originalLanguage,
@@ -94,7 +94,7 @@ class _$MovieCopyWithImpl<$Res> implements $MovieCopyWith<$Res> {
       backdrop_path: backdrop_path == freezed
           ? _value.backdrop_path
           : backdrop_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: genreIds == freezed
           ? _value.genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -154,7 +154,7 @@ abstract class _$MovieCopyWith<$Res> implements $MovieCopyWith<$Res> {
   @override
   $Res call(
       {bool adult,
-      String backdrop_path,
+      String? backdrop_path,
       String? genreIds,
       int id,
       String? originalLanguage,
@@ -203,7 +203,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
       backdrop_path: backdrop_path == freezed
           ? _value.backdrop_path
           : backdrop_path // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       genreIds: genreIds == freezed
           ? _value.genreIds
           : genreIds // ignore: cast_nullable_to_non_nullable
@@ -261,7 +261,7 @@ class __$MovieCopyWithImpl<$Res> extends _$MovieCopyWithImpl<$Res>
 class _$_Movie implements _Movie {
   _$_Movie(
       {required this.adult,
-      required this.backdrop_path,
+      this.backdrop_path,
       this.genreIds,
       required this.id,
       this.originalLanguage,
@@ -281,7 +281,7 @@ class _$_Movie implements _Movie {
   @override
   final bool adult;
   @override
-  final String backdrop_path;
+  final String? backdrop_path;
   @override
   final String? genreIds;
   @override
@@ -373,7 +373,7 @@ class _$_Movie implements _Movie {
 abstract class _Movie implements Movie {
   factory _Movie(
       {required final bool adult,
-      required final String backdrop_path,
+      final String? backdrop_path,
       final String? genreIds,
       required final int id,
       final String? originalLanguage,
@@ -392,7 +392,7 @@ abstract class _Movie implements Movie {
   @override
   bool get adult => throw _privateConstructorUsedError;
   @override
-  String get backdrop_path => throw _privateConstructorUsedError;
+  String? get backdrop_path => throw _privateConstructorUsedError;
   @override
   String? get genreIds => throw _privateConstructorUsedError;
   @override
