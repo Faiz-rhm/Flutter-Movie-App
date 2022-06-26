@@ -10,7 +10,7 @@ Upcoming Movies using api from themoviedb.org
 
 ## Why This Project
 
-This project is built to show how to use [Riverpod](https://riverpod.dev/). Riverpod package as the state management tool for your flutter application.
+This project is built to show how to use [Riverpod](https://pub.dev/packages/hive). HIV package as the state management tool for your flutter application.
 
 
 ## Getting Started
@@ -45,10 +45,6 @@ I welcome and encourage all pull requests. It usually will take me within 24-48 
 - [Youtube Channel](https://www.youtube.com/channel/UCM1OzZsZ5FQIg01vdKGAw7g)
 - [Twitter](https://twitter.com/faiz_rhm)
 
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
 
