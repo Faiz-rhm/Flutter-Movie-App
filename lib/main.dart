@@ -4,6 +4,7 @@ import 'package:movie_app/view/home_page.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
+  print('testing...');
 }
 
 class MyApp extends StatelessWidget {
