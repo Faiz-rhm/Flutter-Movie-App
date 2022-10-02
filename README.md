@@ -10,7 +10,7 @@ Upcoming Movies using api from themoviedb.org
 
 ## Why This Project
 
-This project is built to show how to use [Riverpod](https://riverpod.dev/). Riverpod package as the state management tool for your flutter application.
+This project is built to show how to use [Riverpod](https://pub.dev/packages/hive). HIV package as the state management tool for your flutter application.
 
 
 ## Getting Started
