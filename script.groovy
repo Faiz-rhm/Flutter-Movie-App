@@ -7,7 +7,7 @@ def doctor() {
 }
 
 def testingApp() {
-    sh 'flutter test'
+    sh "flutter test"
 }
 
 def deployingApp() {

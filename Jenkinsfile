@@ -19,17 +19,35 @@ pipeline {
     stages {
         stage ('INIT') {
             steps {
-                script {
-                    gv = load "script.groovy"
-                }
+                // script {
+                //     gv = load "script.groovy"
+                // }
             }
         }
 
         stage ('Fluttre Doctor') {
             steps {
-                script {
-                    gv.doctor()
+                sh "fluter doctor -v"
+                // script {
+                //     gv.doctor()
+                // }
+            }
+        }
+
+
+        stage('TEST') {
+            when {
+                expression {
+                    params.executeTests
                 }
+            }
+            steps {
+                sh "flutter test"
+                // script{
+                //     gv.testingApp()
+                // }
+
+                // echo 'Testing the app'
             }
         }
 
@@ -40,37 +58,22 @@ pipeline {
             //     }
             // }
             steps {
+                sh "flutter build apk --split-per-abi"
                 // echo 'Building the app'
                 // echo "New version ${NEW_VERSION} is"
                 // sh "mvn install"
                 // sh "gradle install"
-                script {
-                    gv.buildApp()
-                }
-            }
-        }
-
-        stage('TEST') {
-            when {
-                expression {
-                    params.executeTests
-                }
-            }
-            steps {
-
-                script{
-                    gv.testingApp()
-                }
-
-                // echo 'Testing the app'
+                // script {
+                //     gv.buildApp()
+                // }
             }
         }
 
         stage('Deploy') {
             steps {
-                script {
-                    gv.deployingApp()
-                }
+                // script {
+                //     gv.deployingApp()
+                // }
                 // echo 'Deploying the app'
                 // echo "Deploying version ${params.VERSION} is"
                 // withCredentials([
@@ -84,9 +87,11 @@ pipeline {
 
         stage ('Fluttre Clean') {
             steps {
-                script {
-                    gv.clean()
-                }
+                sh "flutter clean"
+
+                // script {
+                //     gv.clean()
+                // }
             }
         }
     }
