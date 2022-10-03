@@ -1,7 +1,7 @@
 def gv
 
 pipeline {
-    agent {lable 'Flutter'}
+    agent any
     // enviroment {
         // NEW_VERSION = '3.3.3',
         // SERVER_CREDENTIALS = credentials('server-credentials')
