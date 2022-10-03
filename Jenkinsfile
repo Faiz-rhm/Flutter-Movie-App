@@ -2,10 +2,11 @@ def gv
 
 pipeline {
     agent any
-    // enviroment {
-    //     NEW_VERSION = '3.3.3',
-    //     SERVER_CREDENTIALS = credentials('server-credentials')
-    // }
+    enviroment {
+        // NEW_VERSION = '3.3.3',
+        // SERVER_CREDENTIALS = credentials('server-credentials')
+        flutter = "/Users/frahman/Netlinks/Development/flutter"
+    }
     // tools{
     //     maven 'Maven'
     //     gradle 'Gradle'
