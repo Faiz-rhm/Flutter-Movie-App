@@ -1,4 +1,4 @@
-def gv
+// def gv
 
 pipeline {
     agent any
@@ -17,13 +17,13 @@ pipeline {
     }
 
     stages {
-        stage ('INIT') {
-            steps {
+        // stage ('INIT') {
+        //     steps {
                 // script {
                 //     gv = load "script.groovy"
                 // }
-            }
-        }
+        //     }
+        // }
 
         stage ('Fluttre Doctor') {
             steps {
@@ -69,8 +69,8 @@ pipeline {
             }
         }
 
-        stage('Deploy') {
-            steps {
+        // stage('Deploy') {
+        //     steps {
                 // script {
                 //     gv.deployingApp()
                 // }
@@ -82,8 +82,8 @@ pipeline {
                 //     sh "some script ${USER} and ${PWD} are"
                 // }
 
-            }
-        }
+        //     }
+        // }
 
         stage ('Fluttre Clean') {
             steps {
