@@ -1,7 +1,7 @@
 def gv
 
 pipeline {
-    agent any
+    agent {lable 'Flutter'}
     // enviroment {
         // NEW_VERSION = '3.3.3',
         // SERVER_CREDENTIALS = credentials('server-credentials')
@@ -21,6 +21,14 @@ pipeline {
             steps {
                 script {
                     gv = load "script.groovy"
+                }
+            }
+        }
+
+        stage ('Fluttre Doctor') {
+            steps {
+                script {
+                    gv.doctor()
                 }
             }
         }
@@ -71,6 +79,14 @@ pipeline {
                 //     sh "some script ${USER} and ${PWD} are"
                 // }
 
+            }
+        }
+
+        stage ('Fluttre Clean') {
+            steps {
+                script {
+                    gv.clean()
+                }
             }
         }
     }
