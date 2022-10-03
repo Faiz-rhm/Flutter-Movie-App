@@ -16,11 +16,11 @@ pipeline {
 
     stages {
         stage('BUILD') {
-            when {
-                expressions {
-                    BRANCH_NAME = 'QA' || BRANCH_NAME = 'dev'
-                }
-            }
+            // when {
+            //     expressions {
+            //         BRANCH_NAME = 'QA' || BRANCH_NAME = 'dev'
+            //     }
+            // }
             steps {
                 echo 'Building the app'
                 // echo "New version ${NEW_VERSION} is"
