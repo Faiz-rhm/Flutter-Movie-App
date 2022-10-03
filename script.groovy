@@ -4,7 +4,7 @@ def buildApp() {
 
 def testingApp() {
     echo "Testing app...";
-    sh 'flutter text'
+    sh 'flutter test'
 }
 
 def deployingApp() {
