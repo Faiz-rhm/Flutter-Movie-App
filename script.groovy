@@ -1,15 +1,15 @@
 def buildApp() {
-    echo "$flutter app...";
+    echo "Building app...";
 }
 
 def testingApp() {
     echo "Testing app...";
-    sh "$flutter test"
+    sh 'flutter test'
 }
 
 def deployingApp() {
     echo "Deploying app...";
-    sh "$flutter build apk"
+    sh 'flutter build apk'
 }
 
 return this
