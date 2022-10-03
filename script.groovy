@@ -4,10 +4,12 @@ def buildApp() {
 
 def testingApp() {
     echo "Testing app...";
+    sh 'flutter text'
 }
 
 def deployingApp() {
-    echo "Deploying version ${params.VERSION} is"
+    echo "Deploying app...";
+    sh 'flutter build apk'
 }
 
 return this
