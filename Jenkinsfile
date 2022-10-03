@@ -30,11 +30,11 @@ pipeline {
         }
 
         stage('TEST') {
-            when {
-                expressions {
-                    params.executeTests
-                }
-            }
+            // when {
+            //     expressions {
+            //         params.executeTests
+            //     }
+            // }
             steps {
                 echo 'Testing the app'
             }
@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the app'
-                echo "Deploying version ${params.VERSION} is"
+                // echo "Deploying version ${params.VERSION} is"
                 // withCredentials([
                 //     usernamePassword(credentials: 'server-credentials', usernameVariable: USER, passwordVariable: PWD)
                 // ]){
