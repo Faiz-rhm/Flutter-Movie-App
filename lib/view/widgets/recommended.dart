@@ -41,9 +41,7 @@ class RecommendedWidget extends ConsumerWidget {
                     borderRadius: BorderRadius.circular(8),
                     color: Colors.grey.withOpacity(0.1),
                     image: DecorationImage(
-                      image: NetworkImage(
-                         '${EnvironmentConfig.IMAGE_BASE_URL}${movie.poster_path}',
-                      ),
+                      image: NetworkImage('${EnvironmentConfig.IMAGE_BASE_URL}${movie.poster_path}',),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -53,9 +51,9 @@ class RecommendedWidget extends ConsumerWidget {
                   width: 100,
                   child: Text(
                     movie.title,
-                    style: theme.textTheme.subtitle2,
+                    style: theme.textTheme.bodySmall,
                     overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
+                    textAlign: TextAlign.center,
                   ),
                 ),
               ],

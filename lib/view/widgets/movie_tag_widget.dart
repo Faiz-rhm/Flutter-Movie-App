@@ -20,6 +20,7 @@ class MovieTags extends ConsumerWidget {
             child: Padding(
               padding: const EdgeInsets.only(right:6, left: 6, top: 0, bottom:10),
               child: Chip(
+                side: BorderSide(color: type == movieType ? Colors.red.shade400 : Colors.grey.shade800),
                 label: Text(
                   type.name,
                 ),

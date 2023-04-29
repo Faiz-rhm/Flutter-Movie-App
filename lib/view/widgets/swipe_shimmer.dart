@@ -10,7 +10,7 @@ class SwipeShimmer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.39,
+      height: MediaQuery.of(context).size.height * 0.40,
       child: Swiper(
         itemCount: 3,
         viewportFraction: 0.42,

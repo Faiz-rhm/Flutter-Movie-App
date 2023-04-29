@@ -106,7 +106,7 @@ class MovieDetailsPage extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium!.copyWith(height: 1.5, color: Colors.grey.shade200),
           truncate: true,
           viewLessText: 'less',
-          linkStyle: Theme.of(context).textTheme.bodyText1!.copyWith(color: Colors.red.shade900),
+          linkStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.red.shade900),
           supportedTypes: const [
             ParsedType.EMAIL,
             ParsedType.HASH,

@@ -21,9 +21,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
               color: Colors.black.withOpacity(0.2),
               image: DecorationImage(
                 fit: BoxFit.cover,
-                image: NetworkImage(
-                  EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,
-                )
+                image: NetworkImage(EnvironmentConfig.IMAGE_BASE_URL + movie.poster_path,)
               )
             ),
           ),
@@ -46,6 +44,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                   child: const Icon(
                     IconlyLight.arrow_left,
                     size: 20,
+                    color: Colors.black,
                   ),
                 ),
               ),
@@ -58,13 +57,14 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                 child: const Icon(
                   IconlyLight.heart,
                   size: 20,
+                  color: Colors.black,
                 ),
               ),
             ],
           )
         ),
         Positioned(
-          top: expandedHeight / 1.30 - shrinkOffset,
+          bottom: 0,
           left: 0,
           right: 0,
           child: Opacity(
@@ -76,7 +76,7 @@ class MySliverAppBar extends SliverPersistentHeaderDelegate {
                 children:[
                   Container(
                     padding: const EdgeInsets.all(5),
-                    child: Text(movie.title, style: Theme.of(context).textTheme.headline5!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
+                    child: Text(movie.title, style: Theme.of(context).textTheme.headlineSmall!.copyWith(color: Colors.white,),textAlign: TextAlign.center,),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
