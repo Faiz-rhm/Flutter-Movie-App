@@ -1,6 +1,8 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:skeletons/skeletons.dart';
+
+import '../../skeleton/stylings.dart';
+import '../../skeleton/widgets.dart';
 
 class SwipeShimmer extends StatelessWidget {
   const SwipeShimmer({

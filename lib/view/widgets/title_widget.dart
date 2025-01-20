@@ -11,7 +11,7 @@ class TitleWidget extends ConsumerWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.all(16),
-      child: Text(movieType.name, style: theme.textTheme.headline5,)
+      child: Text(movieType.name, style: theme.textTheme.bodyLarge,)
     );
   }
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:skeletons/skeletons.dart';
+
+import '../../skeleton/stylings.dart';
+import '../../skeleton/widgets.dart';
 
 class UpcomingShimmer extends StatelessWidget {
   const UpcomingShimmer({

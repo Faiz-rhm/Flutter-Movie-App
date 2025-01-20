@@ -8,7 +8,9 @@ import 'package:movie_app/view/widgets/cast_list.dart';
 import 'package:movie_app/view/widgets/recommended.dart';
 import 'package:movie_app/view/widgets/sliver_app_bar.dart';
 import 'package:rich_text_view/rich_text_view.dart';
-import 'package:skeletons/skeletons.dart';
+
+import '../skeleton/stylings.dart';
+import '../skeleton/widgets.dart';
 
 class MovieDetailsPage extends StatelessWidget {
 
@@ -108,11 +110,7 @@ class MovieDetailsPage extends StatelessWidget {
           viewLessText: 'less',
           linkStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(color: Colors.red.shade900),
           supportedTypes: const [
-            ParsedType.EMAIL,
-            ParsedType.HASH,
-            ParsedType.MENTION,
-            ParsedType.URL,
-            ParsedType.BOLD
+
           ],
         ),
       ],
@@ -179,8 +177,8 @@ class MovieDetailsPage extends StatelessWidget {
         const SizedBox(height: 16,),
         Text('Overview', style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 12,),
-        SkeletonParagraph(
-          style: const SkeletonParagraphStyle(
+        const SkeletonParagraph(
+          style: SkeletonParagraphStyle(
             lines: 4,
             spacing: 8,
             padding: EdgeInsets.all(0),

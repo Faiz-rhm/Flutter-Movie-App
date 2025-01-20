@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/env_config.dart';
 import 'package:movie_app/model/Cast/Cast.dart';
 import 'package:movie_app/provider.dart';
-import 'package:skeletons/skeletons.dart';
+
+import '../../skeleton/stylings.dart';
+import '../../skeleton/widgets.dart';
 
 class CastList extends ConsumerWidget {
   const CastList({Key? key,}) : super(key: key);
@@ -39,7 +41,7 @@ class CastList extends ConsumerWidget {
                 radius: 30,
                 backgroundImage: NetworkImage('${EnvironmentConfig.IMAGE_BASE_URL}${cast.profile_path}'),
               ),
-              title: Text(cast.known_for_department, style: theme.textTheme.overline),
+              title: Text(cast.known_for_department, style: theme.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w700),overflow: TextOverflow.ellipsis,),
               subtitle: Text(cast.character, style: theme.textTheme.labelMedium!.copyWith(fontWeight: FontWeight.w700),overflow: TextOverflow.ellipsis,),
               contentPadding: const EdgeInsets.all(0),
               horizontalTitleGap: 5,

@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:movie_app/env_config.dart';
 import 'package:movie_app/model/Movie/Movie.dart';
 import 'package:movie_app/provider.dart';
-import 'package:skeletons/skeletons.dart';
+
+import '../../skeleton/stylings.dart';
+import '../../skeleton/widgets.dart';
 
 class RecommendedWidget extends ConsumerWidget {
   const RecommendedWidget({Key? key,}) : super(key: key);
